@@ -2,8 +2,7 @@
 - name: download go gzip
   get_url:
     url: "{{ ansible_go_download_url }}"
-    dest: \
-      "/tmp/{{ ansible_go_archive_name }}"
+    dest: "/tmp/{{ ansible_go_archive_name }}"
     mode: "u+rwx"
   register: download
 
