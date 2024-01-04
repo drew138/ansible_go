@@ -2,7 +2,7 @@
 - name: download and extract go tar file
   become: true
   unarchive:
-    src: "{{ download_url }}"
+    src: "{{ ansible_go_download_url }}"
     dest: /usr/local
     remote_src: true
     creates: "/usr/local/go"

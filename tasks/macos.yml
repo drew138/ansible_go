@@ -1,8 +1,9 @@
 ---
 - name: download go gzip
   get_url:
-    url: "{{ download_url }}"
-    dest: /tmp/go{{ go_version }}.darwin-amd64.tar.gz
+    url: "{{ ansible_go_download_url }}"
+    dest: \
+      /tmp/go{{ ansible_go_filename_prefix }}.{{ ansible_go_os }}-{{ ansible_go_arch }}.tar.gz
     mode: "u+rwx"
   register: download
 
