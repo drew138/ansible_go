@@ -3,13 +3,13 @@
   get_url:
     url: "{{ ansible_go_download_url }}"
     dest: \
-      /tmp/go{{ ansible_go_filename_prefix }}.{{ ansible_go_os }}-{{ ansible_go_arch }}.tar.gz
+      /tmp/go.tar.gz
     mode: "u+rwx"
   register: download
 
 - name: extract and move new go folder to /usr/local
   become: true
   # unarchive does not work propertly on macos
-  command: tar -C /usr/local -xzf /tmp/go{{ go_version }}.darwin-amd64.tar.gz
+  command: tar -C /usr/local -xzf /tmp/go.tar.gz
   args:
     creates: "/usr/local/go"
