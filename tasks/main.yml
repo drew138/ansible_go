@@ -2,12 +2,12 @@
 - name: run uname command and set a fact
   command: uname
   register: ansible_go_uname_result
-  when: ansible_go_os is undefined
+  changed_when: false
 
 - name: set fact with uname output
   set_fact:
     ansible_go_os: "{{ ansible_go_uname_result.stdout | lower }}"
-  when: ansible_go_os is undefined
+  changed_when: false
 
 - name: get filename prefix with latest version
   set_fact:
@@ -30,7 +30,7 @@
     ansible_go_current_version: "{{ result.stdout.split(' ')[2] }}"
   when: result.failed == false
 
-- name: set current_version var to none
+- name: set ansible_go_current_version var to none
   set_fact:
     ansible_go_current_version: "none"
   when: result.failed == true
