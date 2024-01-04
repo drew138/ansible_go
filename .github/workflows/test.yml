@@ -29,9 +29,6 @@ jobs:
           ansible-core
 
       - name: run molecule tests
-        run: molecule --version
-
-      - name: run molecule tests
         run: molecule test
         env:
           PY_COLORS: "1"
