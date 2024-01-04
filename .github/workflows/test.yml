@@ -32,7 +32,7 @@ jobs:
           ansible-core
 
       - name: run molecule tests
-        run: molecule test
+        run: molecule --debug test
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
