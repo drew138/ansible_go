@@ -5,6 +5,7 @@
     dest: "/tmp/{{ ansible_go_archive_name }}"
     mode: "u+rwx"
   register: download
+  changed_when: false
 
 - name: extract and move new go folder to /usr/local
   become: true
@@ -17,3 +18,4 @@
   file:
     path: "/tmp/{{ ansible_go_archive_name }}"
     state: absent
+  changed_when: false
