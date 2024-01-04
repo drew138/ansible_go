@@ -32,6 +32,7 @@ jobs:
 
       - name: run molecule tests
         run: molecule test
+        working-directory: ./molecule/
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
