@@ -1,0 +1,9 @@
+---
+- name: download and extract go tar file
+  become: true
+  unarchive:
+    src: "{{ download_url }}"
+    dest: /usr/local
+    remote_src: true
+    creates: "/usr/local/go"
+  when: ansible_go_current_version != ansible_go_filename_prefix

@@ -1,0 +1,14 @@
+---
+- name: download go gzip
+  get_url:
+    url: "{{ download_url }}"
+    dest: /tmp/go{{ go_version }}.darwin-amd64.tar.gz
+    mode: "u+rwx"
+  register: download
+
+- name: extract and move new go folder to /usr/local
+  become: true
+  # unarchive does not work propertly on macos
+  command: tar -C /usr/local -xzf /tmp/go{{ go_version }}.darwin-amd64.tar.gz
+  args:
+    creates: "/usr/local/go"

@@ -1,0 +1,17 @@
+---
+name: "publish role"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: publish to ansible galaxy
+        uses: robertdebock/galaxy-action@1.2.0
+        with:
+          galaxy_api_key: ${{ secrets.galaxy_api_key }}
+          git_branch: main

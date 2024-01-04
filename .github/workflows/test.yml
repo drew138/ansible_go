@@ -1,0 +1,38 @@
+---
+name: test ansible roles
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      matrix:
+        os: [macos, ubuntu]
+    steps:
+      - name: check out the codebase
+        uses: actions/checkout@v2
+
+      - name: set up python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: install test dependencies
+        run: pip3 install \
+          pytest-testinfra \
+          molecule \
+          ansible \
+          ansible-core
+
+      - name: run molecule tests
+        run: molecule --version
+
+      - name: run molecule tests
+        run: molecule test
+        env:
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
