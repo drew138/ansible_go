@@ -1,7 +1,15 @@
 ---
+- name: Run uname command and set a fact
+  command: uname
+  register: ansible_go_uname_result
+
+- name: Set fact with uname output
+  set_fact:
+    ansible_go_os: "{{ ansible_go_uname_result.stdout | lower }}"
+
 - name: get filename prefix with latest version
   set_fact:
-    filename_prefix: \
+    ansible_go_filename_prefix: \
       "{{ lookup('url', ansible_go_latest_version_url, split_lines=False) }}"
   when: ansible_go_version == "latest"
 
