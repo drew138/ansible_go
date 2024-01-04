@@ -12,3 +12,8 @@
   command: tar -C /usr/local -xzf /tmp/{{ ansible_go_archive_name }}
   args:
     creates: "/usr/local/go"
+
+- name: remove go gzip file
+  file:
+    path: "/tmp/{{ ansible_go_archive_name }}"
+    state: absent
