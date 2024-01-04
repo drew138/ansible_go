@@ -9,6 +9,4 @@ provisioner:
     defaults:
       ansible_connection: local
 verifier:
-  name: testinfra
-  options:
-    s: true
+  name: ansible
