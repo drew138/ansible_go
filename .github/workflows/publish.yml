@@ -13,5 +13,5 @@ jobs:
       - name: publish to ansible galaxy
         uses: robertdebock/galaxy-action@1.2.0
         with:
-          galaxy_api_key: ${{ secrets.galaxy_api_key }}
+          galaxy_api_key: ${{ secrets.GALAXY_API_TOKEN }}
           git_branch: main
