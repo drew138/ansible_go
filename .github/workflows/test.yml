@@ -8,6 +8,8 @@ on:
 
 jobs:
   test:
+    env:
+      OBJC_DISABLE_INITIALIZE_FORK_SAFETY: YES
     runs-on: ${{ matrix.os }}-latest
     strategy:
       matrix:
@@ -23,16 +25,12 @@ jobs:
 
       - name: install test dependencies
         run: pip3 install \
-          pytest-testinfra \
           molecule \
           ansible \
           ansible-core
 
       - name: run molecule tests
-        run: molecule --version
-
-      - name: run molecule tests
-        run: molecule test
+        run: molecule --debug test
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"

@@ -1,8 +1,9 @@
 ---
 - name: Converge
-  hosts: all
+  hosts: localhost
   gather_facts: false
+  vars_files:
+    - ../../defaults/main.yml
+    - ../../vars/main.yml
   tasks:
-    - name: Replace this task with one that validates your content
-      ansible.builtin.debug:
-        msg: "This is the effective test"
+    - include_tasks: ../../tasks/main.yml

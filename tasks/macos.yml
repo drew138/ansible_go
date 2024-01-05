@@ -1,14 +1,21 @@
 ---
 - name: download go gzip
   get_url:
-    url: "{{ download_url }}"
-    dest: /tmp/go{{ go_version }}.darwin-amd64.tar.gz
+    url: "{{ ansible_go_download_url }}"
+    dest: "/tmp/{{ ansible_go_archive_name }}"
     mode: "u+rwx"
   register: download
+  changed_when: false
 
 - name: extract and move new go folder to /usr/local
   become: true
   # unarchive does not work propertly on macos
-  command: tar -C /usr/local -xzf /tmp/go{{ go_version }}.darwin-amd64.tar.gz
+  command: tar -C /usr/local -xzf /tmp/{{ ansible_go_archive_name }}
   args:
     creates: "/usr/local/go"
+
+- name: remove go gzip file
+  file:
+    path: "/tmp/{{ ansible_go_archive_name }}"
+    state: absent
+  changed_when: false

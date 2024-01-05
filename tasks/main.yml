@@ -1,7 +1,17 @@
 ---
+- name: run uname command and set a fact
+  command: uname
+  register: ansible_go_uname_result
+  changed_when: false
+
+- name: set fact with uname output
+  set_fact:
+    ansible_go_os: "{{ ansible_go_uname_result.stdout | lower }}"
+  changed_when: false
+
 - name: get filename prefix with latest version
   set_fact:
-    filename_prefix: \
+    ansible_go_filename_prefix: \
       "{{ lookup('url', ansible_go_latest_version_url, split_lines=False) }}"
   when: ansible_go_version == "latest"
 
@@ -15,18 +25,18 @@
   register: result
   changed_when: false
 
-- name: set current_version var to the current
+- name: set ansible_go_current_version var
   set_fact:
     ansible_go_current_version: "{{ result.stdout.split(' ')[2] }}"
   when: result.failed == false
 
-- name: set current_version var to none
+- name: set ansible_go_current_version var to none
   set_fact:
     ansible_go_current_version: "none"
   when: result.failed == true
 
 - include_tasks: ./macos.yml
-  when: ansible_go_os == darwin
+  when: ansible_go_os == 'darwin'
 
 - include_tasks: ./ubuntu.yml
-  when: ansible_go_os == linux
+  when: ansible_go_os == 'linux'
