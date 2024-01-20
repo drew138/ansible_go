@@ -35,6 +35,10 @@
     ansible_go_current_version: "none"
   when: result.failed == true
 
+- name: Get home directory of example_user
+  ansible.builtin.debug:
+    msg: "{{ ansible_env.HOME }}"
+
 - include_tasks: ./macos.yml
   when: ansible_go_os == 'darwin'
 
