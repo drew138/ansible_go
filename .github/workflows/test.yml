@@ -26,9 +26,9 @@ jobs:
       - name: install test dependencies
         run: pip3 install \
           molecule \
+          'molecule-plugins[docker]'
           # ansible \
           # ansible-core
-          # 'molecule-plugins[docker]'
 
       - name: run molecule tests
         run: molecule --debug test
