@@ -37,7 +37,7 @@
 
 - name: Get home directory of example_user
   ansible.builtin.debug:
-    msg: "{{ ansible_env.HOME }}"
+    msg: "{{ ansible_go_host_user }}"
 
 - include_tasks: ./macos.yml
   when: ansible_go_os == 'darwin'
