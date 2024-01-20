@@ -8,8 +8,8 @@ on:
 
 jobs:
   test:
-    env:
-      OBJC_DISABLE_INITIALIZE_FORK_SAFETY: YES
+    # env:
+    #   OBJC_DISABLE_INITIALIZE_FORK_SAFETY: YES
     runs-on: ${{ matrix.os }}-latest
     strategy:
       matrix:
