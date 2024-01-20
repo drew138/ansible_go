@@ -28,6 +28,7 @@ jobs:
           molecule \
           ansible \
           ansible-core
+          'molecule-plugins[docker]'
 
       - name: run molecule tests
         run: molecule --debug test
