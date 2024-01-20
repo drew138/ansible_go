@@ -13,6 +13,13 @@ platforms:
       - SYS_ADMIN
     command: "/lib/systemd/systemd"
     pre_build_image: true
+
+  - name: instance
+    image: sickcodes/docker-osx:latest
+    ports:
+      - "50922:10022"
+    volumes:
+      - /dev/kvm:/dev/kvm  # Share the KVM device
 provisioner:
   name: ansible
 verifier:
