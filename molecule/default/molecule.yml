@@ -26,12 +26,12 @@ platforms:
   #   command: "/usr/sbin/init"
   #   pre_build_image: true
 
-  # - name: macos
-  #   image: sickcodes/docker-osx:latest
-    # ports:
-    #   - "50922:10022"
-    # volumes:
-    #   - /dev/kvm:/dev/kvm  # Share the KVM device
+  - name: macos
+    image: sickcodes/docker-osx:latest
+    ports:
+      - "50922:10022"
+    volumes:
+      - /dev/kvm:/dev/kvm  # Share the KVM device
 provisioner:
   name: ansible
 verifier:
