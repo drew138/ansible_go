@@ -23,6 +23,8 @@ jobs:
         with:
           python-version: "3.x"
 
+      - uses: docker-practice/actions-setup-docker@master
+
       - name: install test dependencies
         run: pip3 install \
           molecule \
