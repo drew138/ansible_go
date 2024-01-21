@@ -23,14 +23,12 @@ jobs:
         with:
           python-version: "3.x"
 
-      - uses: docker-practice/actions-setup-docker@master
-
       - name: install test dependencies
         run: pip3 install \
+          ansible \
           molecule \
+          docker \
           'molecule-plugins[docker]'
-          # ansible \
-          # ansible-core
 
       - name: run molecule tests
         run: molecule --debug test

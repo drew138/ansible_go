@@ -1,38 +1,16 @@
 ---
+dependency:
+  name: galaxy
 driver:
   name: docker
 platforms:
-  # - name: hello
-  # - name: ubuntu
-  #   image: geerlingguy/docker-ubuntu2004-ansible
-  #   tmpfs:
-  #     - /run
-  #     - /tmp
-  #   volumes:
-  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  #   capabilities:
-  #     - SYS_ADMIN
-  #   command: "/lib/systemd/systemd"
-  #   pre_build_image: true
-
-  - name: rhel8
-    image: registry.access.redhat.com/ubi8/ubi-init
-    tmpfs:
-      - /run
-      - /tmp
+  - name: instance
+    image: geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest
+    command: ""
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    capabilities:
-      - SYS_ADMIN
-    command: "/usr/sbin/init"
+    privileged: true
     pre_build_image: true
-
-  # - name: macos
-  #   image: sickcodes/docker-osx:latest
-  #   ports:
-  #     - "50922:10022"
-  #   volumes:
-  #     - /dev/kvm:/dev/kvm  # Share the KVM device
 provisioner:
   name: ansible
 verifier:
