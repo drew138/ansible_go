@@ -13,7 +13,5 @@ platforms:
     pre_build_image: true
 provisioner:
   name: ansible
-  env:
-    ANSIBLE_REMOTE_TMP: ~/.ansible
 verifier:
   name: ansible
