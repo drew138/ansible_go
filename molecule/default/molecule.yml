@@ -14,6 +14,6 @@ platforms:
 provisioner:
   name: ansible
   env:
-    ANSIBLE_REMOTE_TMP: /tmp/ansible
+    ANSIBLE_REMOTE_TMP: ~/.ansible
 verifier:
   name: ansible
